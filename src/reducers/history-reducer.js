@@ -1,46 +1,43 @@
 export default (state = {}, action) => {
   switch (action.type) {
-    case 'TURN-SWITCH':
+  case 'TURN-SWITCH':
     const { idOfSquare } = action;
-    console.log('STATE is: ', state);
-    console.log('ACTION is: ', action);
 
+    let currentPlayer = (state.xIsNext ? 'X' : 'O');
 
+    let historyLength = (state.history.length - 1);
 
+    let lastHistory = state.history[historyLength][historyLength].squares;
 
-console.log('state.history IS: ', state.history);
-
-
-
-
-    let newTurn = state.xIsNext ? 'X' : 'O'
-    console.log('newTurn is: ', newTurn);
-
-    let squares = [null, null, null, null, null, null, null, null, null]
-    console.log('SQUARES WAS: ', squares);
-    squares[action.idOfSquare] = newTurn;
-    console.log('SQUARES IS!!!!!: ', squares);
-
-    let history = state.history
-    console.log('history is: ', history);
-
-
-    console.log('action.idOfSquare is: ', action.idOfSquare);
-    console.log('state.history.length is: ', state.history.length);
-
-    // switch bool for next turn:
-    let newXIsNext = !state.xIsNext
-
-    let newState = Object.assign({}, state, {
-      ['new']: {
-        history: history,
-        xIsNext: newXIsNext,
-        id: idOfSquare,
+    let newHistory = lastHistory.map((e, index) => {
+      if (index === action.idOfSquare) {
+        return currentPlayer;
+      } else {
+        return e;
       }
     });
-    console.log(idOfSquare);
+
+    let newStepNumber = (state.history.length);
+
+    let newHistoryObject = {[newStepNumber]: {squares: newHistory}};
+
+
+    let mergeHistory = (state.history).concat(newHistoryObject);
+
+
+    // switch bool for next turn:
+    let newXIsNext = !state.xIsNext;
+    // Count which stepNumber:
+
+    console.log('You\'re welcome! \n 🌸 🌼 🌺 \n ~Noah');
+
+    let newState = Object.assign({}, state, {
+      history: mergeHistory,
+      xIsNext: newXIsNext,
+      stepNumber: newStepNumber,
+    });
     return newState;
-    default:
+  default:
     return state;
   }
 };

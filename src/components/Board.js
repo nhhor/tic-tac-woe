@@ -12,16 +12,16 @@ function Board(props){
     );
   }
 
-// OR
+  // OR
 
-//   const renderSquare = (i) => {
-//     return (
-//       <Square
-//         value={props.squares[i]}
-//         onClick={() => props.onClick(i)}
-//       />
-//     );
-//   };
+  //   const renderSquare = (i) => {
+  //     return (
+  //       <Square
+  //         value={props.squares[i]}
+  //         onClick={() => props.onClick(i)}
+  //       />
+  //     );
+  //   };
 
   return (
     <div>

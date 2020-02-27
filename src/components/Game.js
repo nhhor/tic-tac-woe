@@ -2,8 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Board from './Board';
 import './index.css';
+import { connect } from 'react-redux';
+import historyReducer from './../reducers/history-reducer';
+
+const store = createStore(historyReducer);
 
 class Game extends React.Component {
+
+
   constructor(props) {
     super(props);
     this.state = {
@@ -99,4 +105,10 @@ function calculateWinner(squares) {
   return null;
 }
 
-export default Game;
+const mapStateToProps = state => {
+  return {
+    masterTicketList: state
+  };
+};
+
+export default connect(mapStateToProps)(Game);
